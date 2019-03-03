@@ -7,7 +7,7 @@ def set_commandline_args():
 
     commandline_args.add_argument("-d",
                                   "--directory",
-                                  dest="root_directory",
+                                  dest="class_data_directory",
                                   help="Directory containing bulk_down.zip files from Collab",
                                   required=True
                                   )
@@ -34,7 +34,7 @@ def main():
 
     args = set_commandline_args()
 
-    algo_class = CollaboratorsParser(args.root_directory)
+    algo_class = CollaboratorsParser(args.class_data_directory)
 
     if not algo_class.is_valid():
         print("Directory contains invalid files")
@@ -45,7 +45,7 @@ def main():
     algo_class.generate_collaborators()
 
     # algo_class.output_to_file(args.output_file)
-    # #
+
     if args.cleanup:
         algo_class.cleanup()
 
