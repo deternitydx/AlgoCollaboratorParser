@@ -37,7 +37,6 @@ def main():
     algo_class = CollaboratorsParser(args.class_data_directory)
 
     if not algo_class.is_valid():
-        print("Directory contains invalid files")
         return
 
     algo_class.extract_bulk_downloads()

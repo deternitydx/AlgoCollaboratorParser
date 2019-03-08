@@ -2,10 +2,12 @@
 ## CS 4102 Homework Collaborators Parser
 
 ### Status
-Work in progess. Needs more testing
+Work in progess. Needs more testing.
 
+ &nbsp;&nbsp;
+ 
 ### Usage
-`python3 -m run [-h] -d CLASS_DATA_DIRECTORY -o OUTPUT_FILE [-c]`
+`python3 -m Parser [-h] -d CLASS_DATA_DIRECTORY -o OUTPUT_FILE [-c]`
 
 ##### Optional Arguments
 
@@ -15,10 +17,10 @@ Work in progess. Needs more testing
   _-d CLASS_DATA_DIRECTORY, --directory CLASS_DATA_DIRECTORY_
   Directory containing bulk_down.zip files from Collab
   
- _ -o OUTPUT_FILE, --output OUTPUT_FILE_
+  _-o OUTPUT_FILE, --output OUTPUT_FILE_
   Filename for output containing collaborator graph data (Ex: AlgorithmsFall2018.txt)
   
- _ -c, --cleanup_
+  _-c, --cleanup_
   Removes any files extracted during parsing and restores parent to original state
 
 
@@ -36,18 +38,18 @@ Work in progess. Needs more testing
 
 ##### Expected Directory Layout
 
-+ Parser
++ Parser/
     + \_\_init\_\_.py
     + CollaboratorsParser.py
     + StudentInfo.py
     + run.py
-+ ClassData2018F
++ ClassData2018F/
     * bulk_download.zip
     * bulk_download (1).zip
     * bulk_download (2).zip
     * ...
     * bulk_download (n).zip
-+ ClassData2017S
++ ClassData2017S/
     * bulk_download.zip
     * bulk_download (1).zip
     * bulk_download (2).zip

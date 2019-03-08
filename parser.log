@@ -1,0 +1,22 @@
+Unable to extract: /Users/Abey/Desktop/AlgoCollaboratorParser/Data/extracted_data/HW8_ Graphs/Horan, Fintan(fbh6dc)/Submission attachment(s)/fbh6dc_cs4102_hw8.zip
+Unable to extract: /Users/Abey/Desktop/AlgoCollaboratorParser/Data/extracted_data/HW9_ Reductions/Horan, Fintan(fbh6dc)/Submission attachment(s)/fbh6dc_cs4102_hw9.zip
+Unable to extract: /Users/Abey/Desktop/AlgoCollaboratorParser/Data/extracted_data/HW8_ Graphs/Horan, Fintan(fbh6dc)/Submission attachment(s)/fbh6dc_cs4102_hw8.zip
+Unable to extract: /Users/Abey/Desktop/AlgoCollaboratorParser/Data/extracted_data/HW9_ Reductions/Horan, Fintan(fbh6dc)/Submission attachment(s)/fbh6dc_cs4102_hw9.zip
+2019-03-08 01:56:10,995 - Parser.CollaboratorsParser - INFO - Valididating class data directory files and path.
+2019-03-08 01:56:11,018 - Parser.CollaboratorsParser - INFO - Extracting bulk_download zip files.
+2019-03-08 01:56:29,235 - Parser.CollaboratorsParser - INFO - Extracting nested student zip files.
+2019-03-08 01:56:32,187 - Parser.CollaboratorsParser - WARNING - Unable to extract: /Users/Abey/Desktop/AlgoCollaboratorParser/Data/extracted_data/HW8_ Graphs/Horan, Fintan(fbh6dc)/Submission attachment(s)/fbh6dc_cs4102_hw8.zip
+2019-03-08 01:56:41,227 - Parser.CollaboratorsParser - WARNING - Unable to extract: /Users/Abey/Desktop/AlgoCollaboratorParser/Data/extracted_data/HW9_ Reductions/Horan, Fintan(fbh6dc)/Submission attachment(s)/fbh6dc_cs4102_hw9.zip
+2019-03-08 01:56:43,024 - Parser.CollaboratorsParser - INFO - Interate through extracted files and parse tex
+2019-03-08 01:58:00,484 - Parser.CollaboratorsParser - INFO - Valididating class data directory files and path.
+2019-03-08 01:58:00,496 - Parser.CollaboratorsParser - INFO - Extracting bulk_download zip files.
+2019-03-08 01:58:20,060 - Parser.CollaboratorsParser - INFO - Extracting nested student zip files.
+2019-03-08 01:58:23,726 - Parser.CollaboratorsParser - WARNING - Unable to extract: /Users/Abey/Desktop/AlgoCollaboratorParser/Data/extracted_data/HW8_ Graphs/Horan, Fintan(fbh6dc)/Submission attachment(s)/fbh6dc_cs4102_hw8.zip
+2019-03-08 01:58:32,120 - Parser.CollaboratorsParser - WARNING - Unable to extract: /Users/Abey/Desktop/AlgoCollaboratorParser/Data/extracted_data/HW9_ Reductions/Horan, Fintan(fbh6dc)/Submission attachment(s)/fbh6dc_cs4102_hw9.zip
+2019-03-08 01:58:33,738 - Parser.CollaboratorsParser - INFO - Interate through extracted files and parse tex
+2019-03-08 02:03:55,886 - Parser.CollaboratorsParser - INFO - Valididating class data directory files and path.
+2019-03-08 02:03:55,910 - Parser.CollaboratorsParser - INFO - Extracting bulk_download zip files.
+2019-03-08 02:04:12,218 - Parser.CollaboratorsParser - INFO - Extracting nested student zip files.
+2019-03-08 02:04:14,903 - Parser.CollaboratorsParser - WARNING - Unable to extract: /Users/Abey/Desktop/AlgoCollaboratorParser/Data/extracted_data/HW8_ Graphs/Horan, Fintan(fbh6dc)/Submission attachment(s)/fbh6dc_cs4102_hw8.zip
+2019-03-08 02:04:22,417 - Parser.CollaboratorsParser - WARNING - Unable to extract: /Users/Abey/Desktop/AlgoCollaboratorParser/Data/extracted_data/HW9_ Reductions/Horan, Fintan(fbh6dc)/Submission attachment(s)/fbh6dc_cs4102_hw9.zip
+2019-03-08 02:04:24,195 - Parser.CollaboratorsParser - INFO - Interate through extracted files and parse tex

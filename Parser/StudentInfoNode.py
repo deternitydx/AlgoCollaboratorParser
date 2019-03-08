@@ -1,6 +1,9 @@
+import logging
 
 class StudentInfoNode:
     def __init__(self, student_str):
+
+        self.logger = logging.getLogger(__name__)
         # student_str: name of subdirs in collab bulk_download.zip
         # format: last_name, first_name(computing_id)
 
