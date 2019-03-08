@@ -7,18 +7,20 @@ Work in progess. Needs more testing.
  &nbsp;&nbsp;
  
 ### Usage
-`python3 -m Parser [-h] -d CLASS_DATA_DIRECTORY -o OUTPUT_FILE [-c]`
+`python3 -m Parser [-h] CLASS_DATA_DIRECTORY OUTPUT_FILE [-c]`
+
+##### Positional Arguments
+
+  _CLASS_DATA_DIRECTORY_
+  Directory containing bulk_down.zip files from Collab
+  
+  _OUTPUT_FILE_
+  Filename for output containing collaborator graph data (Ex: AlgorithmsFall2018.txt)
 
 ##### Optional Arguments
 
   _-h, --help_
   Show this help message and exit
-  
-  _-d CLASS_DATA_DIRECTORY, --directory CLASS_DATA_DIRECTORY_
-  Directory containing bulk_down.zip files from Collab
-  
-  _-o OUTPUT_FILE, --output OUTPUT_FILE_
-  Filename for output containing collaborator graph data (Ex: AlgorithmsFall2018.txt)
   
   _-c, --cleanup_
   Removes any files extracted during parsing and restores parent to original state

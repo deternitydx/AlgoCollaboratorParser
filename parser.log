@@ -20,3 +20,41 @@ Unable to extract: /Users/Abey/Desktop/AlgoCollaboratorParser/Data/extracted_dat
 2019-03-08 02:04:14,903 - Parser.CollaboratorsParser - WARNING - Unable to extract: /Users/Abey/Desktop/AlgoCollaboratorParser/Data/extracted_data/HW8_ Graphs/Horan, Fintan(fbh6dc)/Submission attachment(s)/fbh6dc_cs4102_hw8.zip
 2019-03-08 02:04:22,417 - Parser.CollaboratorsParser - WARNING - Unable to extract: /Users/Abey/Desktop/AlgoCollaboratorParser/Data/extracted_data/HW9_ Reductions/Horan, Fintan(fbh6dc)/Submission attachment(s)/fbh6dc_cs4102_hw9.zip
 2019-03-08 02:04:24,195 - Parser.CollaboratorsParser - INFO - Interate through extracted files and parse tex
+2019-03-08 02:42:14,690 - Parser.CollaboratorsParser - INFO - Valididating class data directory files and path.
+2019-03-08 02:42:14,713 - Parser.CollaboratorsParser - INFO - Extracting bulk_download zip files.
+2019-03-08 02:42:31,336 - Parser.CollaboratorsParser - INFO - Extracting nested student zip files.
+2019-03-08 02:42:34,140 - Parser.CollaboratorsParser - WARNING - Unable to extract: /Users/Abey/Desktop/AlgoCollaboratorParser/Data/extracted_data/HW8_ Graphs/Horan, Fintan(fbh6dc)/Submission attachment(s)/fbh6dc_cs4102_hw8.zip
+2019-03-08 02:42:44,738 - Parser.CollaboratorsParser - WARNING - Unable to extract: /Users/Abey/Desktop/AlgoCollaboratorParser/Data/extracted_data/HW9_ Reductions/Horan, Fintan(fbh6dc)/Submission attachment(s)/fbh6dc_cs4102_hw9.zip
+2019-03-08 02:42:46,830 - Parser.CollaboratorsParser - INFO - Interate through extracted files and parse tex
+2019-03-08 02:48:08,502 - Parser.CollaboratorsParser - INFO - Valididating class data directory files and path.
+2019-03-08 02:48:08,512 - Parser.CollaboratorsParser - INFO - Extracting bulk_download zip files.
+2019-03-08 02:48:24,333 - Parser.CollaboratorsParser - INFO - Extracting nested student zip files.
+2019-03-08 02:48:27,103 - Parser.CollaboratorsParser - WARNING - Unable to extract: /Users/Abey/Desktop/AlgoCollaboratorParser/Data/extracted_data/HW8_ Graphs/Horan, Fintan(fbh6dc)/Submission attachment(s)/fbh6dc_cs4102_hw8.zip
+2019-03-08 02:48:34,148 - Parser.CollaboratorsParser - WARNING - Unable to extract: /Users/Abey/Desktop/AlgoCollaboratorParser/Data/extracted_data/HW9_ Reductions/Horan, Fintan(fbh6dc)/Submission attachment(s)/fbh6dc_cs4102_hw9.zip
+2019-03-08 02:48:35,827 - Parser.CollaboratorsParser - INFO - Interate through extracted files and parse tex
+2019-03-08 02:49:20,234 - Parser.CollaboratorsParser - INFO - Valididating class data directory files and path.
+2019-03-08 02:49:20,245 - Parser.CollaboratorsParser - INFO - Extracting bulk_download zip files.
+2019-03-08 02:49:35,772 - Parser.CollaboratorsParser - INFO - Extracting nested student zip files.
+2019-03-08 02:49:38,308 - Parser.CollaboratorsParser - WARNING - Unable to extract: /Users/Abey/Desktop/AlgoCollaboratorParser/Data/extracted_data/HW8_ Graphs/Horan, Fintan(fbh6dc)/Submission attachment(s)/fbh6dc_cs4102_hw8.zip
+2019-03-08 02:49:44,869 - Parser.CollaboratorsParser - WARNING - Unable to extract: /Users/Abey/Desktop/AlgoCollaboratorParser/Data/extracted_data/HW9_ Reductions/Horan, Fintan(fbh6dc)/Submission attachment(s)/fbh6dc_cs4102_hw9.zip
+2019-03-08 02:49:46,727 - Parser.CollaboratorsParser - INFO - Interate through extracted files and parse tex
+2019-03-08 02:50:07,638 - Parser.CollaboratorsParser - INFO - Valididating class data directory files and path.
+2019-03-08 02:50:07,653 - Parser.CollaboratorsParser - INFO - Extracting bulk_download zip files.
+2019-03-08 02:50:21,742 - Parser.CollaboratorsParser - INFO - Extracting nested student zip files.
+2019-03-08 02:50:24,343 - Parser.CollaboratorsParser - WARNING - Unable to extract: /Users/Abey/Desktop/AlgoCollaboratorParser/Data/extracted_data/HW8_ Graphs/Horan, Fintan(fbh6dc)/Submission attachment(s)/fbh6dc_cs4102_hw8.zip
+2019-03-08 02:50:30,560 - Parser.CollaboratorsParser - WARNING - Unable to extract: /Users/Abey/Desktop/AlgoCollaboratorParser/Data/extracted_data/HW9_ Reductions/Horan, Fintan(fbh6dc)/Submission attachment(s)/fbh6dc_cs4102_hw9.zip
+2019-03-08 02:50:32,120 - Parser.CollaboratorsParser - INFO - Interate through extracted files and parse tex
+2019-03-08 03:38:17,893 - Parser.CollaboratorsParser - INFO - Valididating class data directory files and path.
+2019-03-08 03:38:17,910 - Parser.CollaboratorsParser - INFO - Extracting bulk_download zip files.
+2019-03-08 03:38:34,351 - Parser.CollaboratorsParser - INFO - Extracting nested student zip files.
+2019-03-08 03:38:37,087 - Parser.CollaboratorsParser - WARNING - Unable to extract: /Users/Abey/Desktop/AlgoCollaboratorParser/Data/extracted_data/HW8_ Graphs/Horan, Fintan(fbh6dc)/Submission attachment(s)/fbh6dc_cs4102_hw8.zip
+2019-03-08 03:38:44,190 - Parser.CollaboratorsParser - WARNING - Unable to extract: /Users/Abey/Desktop/AlgoCollaboratorParser/Data/extracted_data/HW9_ Reductions/Horan, Fintan(fbh6dc)/Submission attachment(s)/fbh6dc_cs4102_hw9.zip
+2019-03-08 03:39:28,160 - Parser.CollaboratorsParser - INFO - Valididating class data directory files and path.
+2019-03-08 03:39:28,161 - Parser.CollaboratorsParser - ERROR - Directory contains invalid dirs
+2019-03-08 03:39:51,862 - Parser.CollaboratorsParser - INFO - Valididating class data directory files and path.
+2019-03-08 03:39:51,881 - Parser.CollaboratorsParser - INFO - Extracting bulk_download zip files.
+2019-03-08 03:40:07,596 - Parser.CollaboratorsParser - INFO - Extracting nested student zip files.
+2019-03-08 03:40:09,846 - Parser.CollaboratorsParser - WARNING - Unable to extract: /Users/Abey/Desktop/AlgoCollaboratorParser/Data/extracted_data/HW8_ Graphs/Horan, Fintan(fbh6dc)/Submission attachment(s)/fbh6dc_cs4102_hw8.zip
+2019-03-08 03:40:16,996 - Parser.CollaboratorsParser - WARNING - Unable to extract: /Users/Abey/Desktop/AlgoCollaboratorParser/Data/extracted_data/HW9_ Reductions/Horan, Fintan(fbh6dc)/Submission attachment(s)/fbh6dc_cs4102_hw9.zip
+2019-03-08 03:40:18,649 - Parser.CollaboratorsParser - INFO - Mapping student identifiers to StudentInfoNode.
+2019-03-08 03:40:22,945 - Parser.CollaboratorsParser - INFO - Parsing tex to get collaborators

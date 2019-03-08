@@ -9,9 +9,9 @@ class StudentInfoNode:
 
         student_str = student_str.split(",")
 
-        self.first_name = student_str[0]
+        self.firstname = student_str[0]
 
-        self.last_name = student_str[1].split("(")[0]
+        self.lastname = student_str[1].split("(")[0]
 
         self.computing_id = student_str[1].split("(")[1][:-1]
 
@@ -23,4 +23,6 @@ class StudentInfoNode:
 
     def get_randomized_id(self):
         return id(self)
+
+        
 

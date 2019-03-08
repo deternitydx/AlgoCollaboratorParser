@@ -5,17 +5,11 @@ from Parser.CollaboratorsParser import CollaboratorsParser
 def set_commandline_args():
     commandline_args = argparse.ArgumentParser()
 
-    commandline_args.add_argument("-d",
-                                  "--directory",
-                                  dest="class_data_directory",
+    commandline_args.add_argument("class_data_directory",
                                   help="Directory containing bulk_down.zip files from Collab",
-                                  required=True
                                   )
-    commandline_args.add_argument("-o",
-                                  "--output",
-                                  dest="output_file",
+    commandline_args.add_argument("output_file",
                                   help="Filename for output containing collaborator graph data (Ex: AlgorithmsFall2018.txt)",
-                                  required=True
                                   )
 
     commandline_args.add_argument("-c",
@@ -26,7 +20,6 @@ def set_commandline_args():
                                   )
 
     return commandline_args.parse_args()
-
 
 
 
@@ -41,6 +34,8 @@ def main():
 
     algo_class.extract_bulk_downloads()
 
+    algo_class.map_students()
+    
     algo_class.generate_collaborators()
 
     # algo_class.output_to_file(args.output_file)
