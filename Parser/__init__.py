@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 
 # Setup handler logging for for stdout
 stdout_handler = logging.StreamHandler(sys.stdout)
-INFO_filter = SingleLevelFilter(logging.INFO, False)
+INFO_filter = SingleLevelFilter([logging.INFO, logging.ERROR])
 stdout_handler.addFilter(INFO_filter)
 
 # Setup handler logging for for files

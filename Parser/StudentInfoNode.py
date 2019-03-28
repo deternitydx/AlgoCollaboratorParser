@@ -1,22 +1,42 @@
 import logging
 
 class StudentInfoNode:
-    def __init__(self, student_str):
+    def __init__(self, identifiers):
 
+        # identifiers format: "last_name, first_name(computing_id)"
+
+        # Setup logging
         self.logger = logging.getLogger(__name__)
-        # student_str: name of subdirs in collab bulk_download.zip
-        # format: last_name, first_name(computing_id)
 
-        student_str = student_str.split(",")
+        # Initialize instance vars
+        self.is_valid = True
+        self.firstname = None
+        self.lastname = None
+        self.computing_id = None
 
-        self.firstname = student_str[0]
+        # Set instance vars
+        self.set_identifiers(identifiers)
 
-        self.lastname = student_str[1].split("(")[0]
-
-        self.computing_id = student_str[1].split("(")[1][:-1]
-
-        # { str hw_name : list Student obj }
+        # { hw_name str : StudentInfoNode list }
         self.collaborators = {}
+
+        print(identifiers)
+        print(self.lastname)
+        print(self.firstname)
+        print()
+
+    def set_identifiers(self, identifiers):
+        
+        # Separate firstname, lastname, computing_id from student_identifiers
+        try:
+            identifiers = identifiers.split(",")
+            self.lastname = identifiers[0].strip()
+            self.firstname = identifiers[1].split("(")[0].strip()
+            self.computing_id = identifiers[1].split("(")[1][:-1].strip()
+        except:
+            self.is_valid = False
+            self.logger.warning("Invalid identifier input %s", identifiers)
+
 
     def print(self):
         pass
