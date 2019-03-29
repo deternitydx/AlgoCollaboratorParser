@@ -9,10 +9,14 @@ class StudentInfoNode:
         self.logger = logging.getLogger(__name__)
 
         # Initialize instance vars
+        self.identifiers = identifiers
         self.is_valid = True
         self.firstname = None
         self.lastname = None
         self.computing_id = None
+
+        # Set Random ID
+        self.randomized_id = str(self.set_randomized_id())
 
         # Set instance vars
         self.set_identifiers(identifiers)
@@ -20,10 +24,10 @@ class StudentInfoNode:
         # { hw_name str : StudentInfoNode list }
         self.collaborators = {}
 
-        print(identifiers)
-        print(self.lastname)
-        print(self.firstname)
-        print()
+        # print(identifiers)
+        # print(self.lastname)
+        # print(self.firstname)
+        # print()
 
     def set_identifiers(self, identifiers):
         
@@ -37,12 +41,9 @@ class StudentInfoNode:
             self.is_valid = False
             self.logger.warning("Invalid identifier input %s", identifiers)
 
-
-    def print(self):
-        pass
-
-    def get_randomized_id(self):
-        return id(self)
+    def set_randomized_id(self):
+        # Simple implementation.
+        return hash(self)
 
         
 

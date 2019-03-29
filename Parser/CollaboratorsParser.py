@@ -30,12 +30,14 @@ class CollaboratorsParser:
             return found_student_identifiers[-1]
 
     def get_homework_identifier(self, path):
+        # print(path)
         # Regex to get lastname, firstname, and computing id from path
-        found_homework_identifiers = re.findall("[HW][^/]*", path)
+        found_homework_identifiers = re.findall("HW[^\/]*", path)
         
         # Found
         if found_homework_identifiers:
             # Return last instance incase user named input path dir to match regex
+            # print(found_homework_identifiers[-1])
             return found_homework_identifiers[-1]
 
 
@@ -190,14 +192,31 @@ class CollaboratorsParser:
     def output_to_file(self, filename):
         self.logger.info("Writing to outputfile...")
 
-        for identifier in self.student_mappings:
-            student = self.student_mappings[identifier]
-            print(student.firstname + " " + student.lastname)
-            for hw in sorted(student.collaborators):
-                print(hw+": "+ ", ".join([s.firstname + " " + s.lastname for s in student.collaborators[hw]]))
-            print()
-            print()
+        output = open(filename, "a")
+        
+        # Keep track of outputted to track multiple refrences
+        visited = set()
 
+        for identifier in tqdm(self.student_mappings):
+            student = self.student_mappings[identifier]
+
+            if student in visited:
+                continue
+            
+            visited.add(student)
+
+            output.write(student.randomized_id)
+            output.write("\n")
+
+            for hw in student.collaborators:
+                collaborators_list = [s.randomized_id for s in student.collaborators[hw]]
+                output.write(hw+": ")
+                output.write(", ".join(collaborators_list))
+                output.write("\n")
+
+            output.write("\n")
+
+        output.close()
     def cleanup(self):
         shutil.rmtree(self.abs_extracted_directory)
 

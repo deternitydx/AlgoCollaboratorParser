@@ -2,7 +2,7 @@
 ## CS 4102 Homework Collaborators Parser
 
 ### Status
-Work in progess. Needs more testing.
+Complete!
 
  &nbsp;&nbsp;
  
