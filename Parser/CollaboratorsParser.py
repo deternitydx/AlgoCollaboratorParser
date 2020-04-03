@@ -20,6 +20,7 @@ class CollaboratorsParser:
 
     # Generates student identifiers string given given
     # Return Forrmat: "last_name, first_name(computing_id)"
+    # changes
     def get_student_identifiers(self, path):
         # Regex to get lastname, firstname, and computing id from path
         found_student_identifiers = re.findall("[A-Za-z\s]+[,][\s][A-Za-z\s]+[(][a-z]+[0-9][a-z]+[)]", path)
