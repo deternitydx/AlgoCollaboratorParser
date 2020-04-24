@@ -139,10 +139,12 @@ class CollaboratorsParser:
             for file in files:
                 if self._is_filetype(".tex", file):
                     abs_file_path = os.path.join(path, file)
-                    self.map_collaborators(abs_file_path)
-    
+                    self.map_collaborators(abs_file_path, "tex")
+                if self._is_filetype(".py", file):
+                    abs_file_path = os.path.join(path, file)
+                    self.map_collaborators(abs_file_path, "code")
 
-    def map_collaborators(self, path):
+    def map_collaborators(self, path, type):
 
         identifier = self.get_student_identifiers(path)
         
@@ -157,11 +159,15 @@ class CollaboratorsParser:
         student = self.student_mappings[identifier]
 
         # Get string put by student
-        collab_str = self.parse_tex_collaborators(path)
+        if (type == "tex"):
+            collab_str = self.parse_tex_collaborators(path)
+
+        print(collab_str)
 
         # Generate every substring and attempt to match collaborators
         # This is gross. But also the best away to catch all edge cases.
         substrings = [collab_str[i:j+1] for i in range(len(collab_str)) for j in range(i,len(collab_str))]
+        # Possible using computing IDs: collabs = re.findall(r'([a-zA-Z]+[0-9][a-zA-Z]+)', collab_str, re.S)
 
 
         # Map
@@ -185,6 +191,9 @@ class CollaboratorsParser:
         with open(abs_input_file, encoding="utf8", errors='ignore') as data:
             collabs = re.findall(r'\\def\\collabs{(.*?)}', data.read(), re.S)
             
+            # for code, we could do:
+            # collabs = re.findall(r'.*Collaborators:(.*)', data.read(), re.S)
+
             # returns student submitted string
             # returns empty string if nothing to avoid null checking late (im lazy)
             return collabs[-1] if collabs else ""
