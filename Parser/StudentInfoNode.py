@@ -1,6 +1,13 @@
 import logging
 
+#new imports
+import random
+import string
+
 class StudentInfoNode:
+
+    availableIds = list(range(1,190))
+
     def __init__(self, identifiers):
 
         # identifiers format: "last_name, first_name(computing_id)"
@@ -43,7 +50,21 @@ class StudentInfoNode:
 
     def set_randomized_id(self):
         # Simple implementation.
-        return hash(self)
+        #return hash(self)
+        
+        #Random implementation- possible but very low chance of duplicates for our purposes
+        #(there are 62^9, or 1.354 * 10^16 possible combinations, if I've done the math right)
+       #return ''.join(random.choices(string.ascii_letters+string.digits,k = 9))
+
+        #final implementation-chooses randomly from list of ids
+        if(len(StudentInfoNode.availableIds)>0):
+            #choose randomly from list of available Ids and then remove that Id from the list
+            temp = random.choice(StudentInfoNode.availableIds)
+            StudentInfoNode.availableIds.remove(temp)
+            return str(temp)
+        else:
+            # randomly choose id if the available id list runs dry (shouldn't happen for our list)
+            return ''.join(random.choices(string.digits+string.ascii_letters,k = 5))
 
         
 
