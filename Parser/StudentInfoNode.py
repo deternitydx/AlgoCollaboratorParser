@@ -21,6 +21,7 @@ class StudentInfoNode:
         self.firstname = None
         self.lastname = None
         self.computing_id = None
+        self.grade = 0
 
         # Set Random ID
         self.randomized_id = str(self.set_randomized_id())
@@ -35,6 +36,9 @@ class StudentInfoNode:
         # print(self.lastname)
         # print(self.firstname)
         # print()
+
+    def match_actual_random_id(self):
+        return self.computing_id, self.randomized_id
 
     def set_identifiers(self, identifiers):
         

@@ -41,16 +41,20 @@ def main():
     # Extracts nested zip files
     algo_class.extract_bulk_downloads()
 
+
+
     # Reads path names and maps students to StudentInfoNode instances
     algo_class.map_students()
 
     # Reads latex files and maps creates collaborators graph with mapped StudentInfoNode
     algo_class.generate_collaborators()
 
+
+    algo_class.output_to_file(args.output_file)
+
     if args.cleanup:
         algo_class.cleanup()
 
-    algo_class.output_to_file(args.output_file)
 
     logger.info("File Generated: parser.log")
 
