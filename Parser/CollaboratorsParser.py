@@ -43,7 +43,8 @@ class CollaboratorsParser:
     def get_homework_identifier(self, path):
         # print(path)
         # Regex to get lastname, firstname, and computing id from path
-        found_homework_identifiers = re.findall("HW[^\/]*", path)
+        #found_homework_identifiers = re.findall("HW[^\/]*", path)
+        found_homework_identifiers = re.findall("HW[0-9]*", path)
         
         # Found
         if found_homework_identifiers:
@@ -159,19 +160,27 @@ class CollaboratorsParser:
             return #student already mapped
 
         # Create new student
+        list_participants_all = get_participants_all_list()
         student = StudentInfoNode(student_identifiers)
         # Add the actual and randomized id mapping
-        actual, randomized = student.match_actual_random_id()
-        self.actual_to_randomized_id.update({actual:randomized})
 
         # Map main identifier to StudentInfoNode
-        self.student_mappings[student_identifiers] = student
+        print("Looking for participant", student.computing_id)
+        if student.computing_id in list_participants_all:
+            print("--Found", student.computing_id)
+            student.set_randomized_id()
+            actual, randomized = student.match_actual_random_id()
+            self.actual_to_randomized_id.update({actual:randomized})
+            self.student_mappings[student_identifiers] = student
+            print("-- -- --", actual, randomized)
 
-        # Map other identifier
-        # Checking for invalid edge cases just in case
-        if student.is_valid:
-            self.student_mappings[student.firstname + " " + student.lastname] = student
-            self.student_mappings[student.computing_id] = student
+            # Map other identifier
+            # Checking for invalid edge cases just in case
+            if student.is_valid:
+                self.student_mappings[student.firstname + " " + student.lastname] = student
+                self.student_mappings[student.computing_id] = student
+        else:
+            print("--Not Found", student.computing_id)
 
 
 
@@ -202,32 +211,33 @@ class CollaboratorsParser:
         homework = self.get_homework_identifier(path)
         
         # Get mapped student
-        student = self.student_mappings[identifier]
+        if identifier in self.student_mappings:
+            student = self.student_mappings[identifier]
 
-        # Get string put by student
-        if type == "tex":
-            collab_str = self.parse_tex_collaborators(path)
-        else:
-            collab_str = self.parse_python_java_collaborators(path)
+            # Get string put by student
+            if type == "tex":
+                collab_str = self.parse_tex_collaborators(path)
+            else:
+                collab_str = self.parse_python_java_collaborators(path)
 
-        # Generate every substring and attempt to match collaborators
-        # This is gross. But also the best away to catch all edge cases.
-        substrings = [collab_str[i:j+1] for i in range(len(collab_str)) for j in range(i,len(collab_str))]
+            # Generate every substring and attempt to match collaborators
+            # This is gross. But also the best away to catch all edge cases.
+            substrings = [collab_str[i:j+1] for i in range(len(collab_str)) for j in range(i,len(collab_str))]
 
 
-        # Map
-        for s in substrings:
-            if s not in self.student_mappings:
-                continue
-            
-            collaborator = self.student_mappings[s]
+            # Map
+            for s in substrings:
+                if s not in self.student_mappings:
+                    continue
+                
+                collaborator = self.student_mappings[s]
 
-            # Create empty set to hold collaborators in student obj
-            # Avoids duplicate edges in graph
-            if homework not in student.collaborators:
-                student.collaborators[homework] = set()
-            
-            student.collaborators[homework].add(collaborator)
+                # Create empty set to hold collaborators in student obj
+                # Avoids duplicate edges in graph
+                if homework not in student.collaborators:
+                    student.collaborators[homework] = set()
+                
+                student.collaborators[homework].add(collaborator)
 
          
 
@@ -281,7 +291,7 @@ class CollaboratorsParser:
         if hw not in df.columns:
             # raise ValueError("homework not found, possibly because no grades.csv file is contained in folder")
             return 0
-        return df.at[int(randomized_id), hw]
+        return df.at[str(randomized_id), hw]
 
     
     def output_to_file(self, filename):
@@ -308,12 +318,14 @@ class CollaboratorsParser:
 
             for hw in student.collaborators:
                 collaborators_list = [s.randomized_id for s in student.collaborators[hw]]
+                print(hw)
+                hw_num = hw  # re.findall(r"(.*?) -", hw)[-1]
 
-                hw_num = re.findall(r"(.*?) -", hw)[-1]
-
-                grade = self.grade_lookup(student.randomized_id,hw_num)
-                output.write(hw+"("+str(grade)+")"+": ")
-
+                try:
+                    grade = self.grade_lookup(student.randomized_id,hw_num)
+                    output.write(hw+"("+str(grade)+")"+": ")
+                except:
+                    output.write(hw+"(NOTFOUND)"+": ")
                 # output.write()
 
                 output.write(", ".join(collaborators_list))

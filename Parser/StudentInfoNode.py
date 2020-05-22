@@ -24,7 +24,7 @@ class StudentInfoNode:
         self.grade = 0
 
         # Set Random ID
-        self.randomized_id = str(self.set_randomized_id())
+        #self.randomized_id = str(self.set_randomized_id())
 
         # Set instance vars
         self.set_identifiers(identifiers)
@@ -65,10 +65,10 @@ class StudentInfoNode:
             #choose randomly from list of available Ids and then remove that Id from the list
             temp = random.choice(StudentInfoNode.availableIds)
             StudentInfoNode.availableIds.remove(temp)
-            return str(temp)
+            self.randomized_id = str(temp)
         else:
             # randomly choose id if the available id list runs dry (shouldn't happen for our list)
-            return ''.join(random.choices(string.digits+string.ascii_letters,k = 5))
+            self.randomized_id = ''.join(random.choices(string.digits+string.ascii_letters,k = 5))
 
         
 

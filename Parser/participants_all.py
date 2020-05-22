@@ -5,7 +5,7 @@ def get_participants_all_list(mycsvfile = "/p/collabnets/participants_lists/part
     with open(mycsvfile) as csvfile:
         spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
         for row in spamreader:
-            mylist.append(row)
+            mylist.append(row[0].strip())
     return mylist
 
-# print(participants_all_list())
+print(get_participants_all_list())
