@@ -44,7 +44,7 @@ class CollaboratorsParser:
         # print(path)
         # Regex to get lastname, firstname, and computing id from path
         #found_homework_identifiers = re.findall("HW[^\/]*", path)
-        found_homework_identifiers = re.findall("HW[0-9]*", path)
+        found_homework_identifiers = re.findall("HW[0-9]+", path)
         
         # Found
         if found_homework_identifiers:
@@ -325,6 +325,7 @@ class CollaboratorsParser:
                     grade = self.grade_lookup(student.randomized_id,hw_num)
                     output.write(hw+"("+str(grade)+")"+": ")
                 except:
+                    print(sys.exc_info())
                     output.write(hw+"(NOTFOUND)"+": ")
                 # output.write()
 
