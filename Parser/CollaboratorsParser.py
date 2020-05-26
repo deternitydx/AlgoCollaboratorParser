@@ -273,13 +273,15 @@ class CollaboratorsParser:
             list_df.append(df)
 
         # merge all panda frames into one by the computing id
-        df_f = reduce(lambda x, y: pd.merge(x, y, on = 'Display ID'), list_df)
+        df_f = reduce(lambda x, y: pd.merge(x, y, how='outer', on = 'Display ID'), list_df)
 
         # replace real ids with randomized ids
         for actual in self.actual_to_randomized_id:
             df_f.replace(actual, self.actual_to_randomized_id[actual], inplace=True)
 
         df_f = df_f.set_index('Display ID')
+        #enter default grade of 99 for homework students didn't turn in
+        df_f.fillna('99', inplace=True)
         df_f.to_csv("grades_all.csv")
 
 
