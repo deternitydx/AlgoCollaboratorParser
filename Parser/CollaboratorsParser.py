@@ -9,7 +9,7 @@ import sys
 from zipfile import ZipFile
 import pandas as pd
 from functools import reduce
-
+import collections
 
 from Parser.participants_all import get_participants_all_list
 
@@ -24,8 +24,8 @@ class CollaboratorsParser:
         self.abs_root_directory = os.path.abspath(root_directory) # abs path of class dir 
         self.abs_extracted_directory = os.path.join(self.abs_root_directory, "extracted_data") # abs path of extracted data
         self.student_mappings = {} # mappings of identifiers (computing id, firstname+lastname, etc) map to same StudentInfoNode reference
-        self.list_csv_location =[]
-        self.actual_to_randomized_id={}
+        self.list_csv_location =[] # the list of the locations of all the csv files to be read
+        self.actual_to_randomized_id={}# mapping of each students' actual id to the randomized id
 
 
     # Generates student identifiers string given given
@@ -161,6 +161,7 @@ class CollaboratorsParser:
 
         # Create new student
         list_participants_all = get_participants_all_list()
+        list_participants_all=['njb2b','jh2jf','tbh3f']
         student = StudentInfoNode(student_identifiers)
         # Add the actual and randomized id mapping
 
@@ -282,7 +283,12 @@ class CollaboratorsParser:
         df_f = df_f.set_index('Display ID')
         #enter default grade of 99 for homework students didn't turn in
         df_f.fillna('99', inplace=True)
+        #sort all homework columns by homework number
+        df_f = df_f.sort_index(axis=1)
+        df_f_with_collaborators = df_f
+
         df_f.to_csv("grades_all.csv")
+        
 
 
     # look up grade for a specified homework from a specified student
@@ -293,9 +299,23 @@ class CollaboratorsParser:
         if hw not in df.columns:
             # raise ValueError("homework not found, possibly because no grades.csv file is contained in folder")
             return 0
-        return df.at[str(randomized_id), hw]
+        return df.at[int(randomized_id), hw]
 
-    
+    #look up collaborators for a specified homework from a specified student
+    def collaborator_lookup(self, randomized_id, hw):
+        collaborators_list=[]
+        for identifier, student in self.student_mappings.items():
+            if str(student.randomized_id) == str(randomized_id):
+                try:
+                    collaborators_list = [s.randomized_id for s in student.collaborators[hw]]
+                # except:
+                #     print(sys.exc_info())
+                    # print(randomized_id,'does not have collaborators for homework',hw)
+                #     print(">")
+                finally:
+                    return collaborators_list
+
+
     def output_to_file(self, filename):
 
         self.parse_grade(self.list_csv_location)
@@ -306,35 +326,110 @@ class CollaboratorsParser:
         
         # Keep track of outputted to track multiple refrences
         visited = set()
+        
+        df = pd.read_csv('grades_all.csv')
+        cols = list(df.columns)
+        # df = df.set_index('Display ID')
+        # for identifier in tqdm(self.student_mappings):
+        #     student = self.student_mappings[identifier]
 
-        for identifier in tqdm(self.student_mappings):
-            student = self.student_mappings[identifier]
-
-            if student in visited:
-                continue
+        #     if student in visited:
+        #         continue
             
-            visited.add(student)
+        #     visited.add(student)
 
-            output.write(student.randomized_id)
+        #     output.write(student.randomized_id)
+        #     output.write("\n")
+            
+            #open grade.csv, copy, try except all students, modify
+
+            #loop over all homework
+            # print("col names",cols[1:])
+            # print("here",student.collaborators['HW1'])
+            # print(collaborators_list)
+        #     print(df['Display ID'])
+        #     row_student = df[df['Display ID'] == int(student.randomized_id)].index[0]
+
+
+        #     for hw in cols[1:]:
+        #         try:
+        #             collaborators_list = [s.randomized_id for s in student.collaborators[hw]]
+        #             print('student random id:',student.randomized_id)
+        #             print(df.at[row_student,hw])
+        #             # df_f.replace(actual, self.actual_to_randomized_id[actual], inplace=True)
+        #             df.replace(df.at[row_student,hw], {df.at[row_student,hw]:collaborators_list}, inplace = True)
+        #             # df.at[int(student.randomized_id),hw] = {df.at[int(student.randomized_id),hw]:collaborators_list}
+        #         except:
+        #             print(sys.exc_info())
+        #             print(hw, 'is not found')
+        # print(df)    
+        # df.to_csv('grades_collaborators_all.csv')
+
+
+        #     output.write(student.randomized_id)
+        #     output.write("\n")
+        output.write("first part: list of all students with all their homework grades and collaborators \n")
+        students_unchanged_collaborators = []
+        students_working_alone = []
+
+        #loop over all students in the grades_all.csv file
+        for name in df['Display ID']:
+            collaborators_for_each_student=[]
+            output.write(str(name))
             output.write("\n")
 
-            for hw in student.collaborators:
-                collaborators_list = [s.randomized_id for s in student.collaborators[hw]]
-                print(hw)
-                hw_num = hw  # re.findall(r"(.*?) -", hw)[-1]
+            #loop through all the homework for each student
+            for hw in cols[1:]:
+                grade = self.grade_lookup(name,hw)
+                collaborators_list = self.collaborator_lookup(name,hw)
+                collaborators_for_each_student.append(collaborators_list)
+                output.write(hw+"("+str(grade)+")"+": ")
 
-                try:
-                    grade = self.grade_lookup(student.randomized_id,hw_num)
-                    output.write(hw+"("+str(grade)+")"+": ")
-                except:
-                    print(sys.exc_info())
-                    output.write(hw+"(NOTFOUND)"+": ")
-                # output.write()
-
-                output.write(", ".join(collaborators_list))
+                # if list not empty
+                if collaborators_list:
+                    output.write(", ".join(collaborators_list))
                 output.write("\n")
-
+            #check if all the collaborator list is the same for all homework
+            if all(elem == collaborators_for_each_student[0] for elem in collaborators_for_each_student):
+                if collaborators_for_each_student[0] == "":
+                    students_working_alone.append(name)
+                students_unchanged_collaborators.append(name)
             output.write("\n")
+        output.write("-----------------------\n")
+
+        output.write("part 2: students who collaborate with the same person/people for all homework: \n")
+        for i in students_unchanged_collaborators:
+            output.write(str(i))
+            output.write("\n")
+
+
+        output.write("-----------------------\n")
+        output.write("part 3: students who always work alone: \n")
+        for i in students_working_alone:
+            output.write(str(i))
+            output.write("\n")
+
+
+            
+
+            # #each hw is in form of 'HW_', where _ is a number
+            # for hw in sorted(student.collaborators):
+            #     collaborators_list = [s.randomized_id for s in student.collaborators[hw]]
+            #     print(hw)
+            #     # hw_num = hw  # re.findall(r"(.*?) -", hw)[-1]
+
+            #     try:
+            #         grade = self.grade_lookup(student.randomized_id,hw)
+            #         output.write(hw+"("+str(grade)+")"+": ")
+            #     except:
+            #         print(sys.exc_info())
+            #         output.write(hw+"(NOTFOUND)"+": ")
+            #     # output.write()
+
+            #     output.write(", ".join(collaborators_list))
+            #     output.write("\n")
+
+            # output.write("\n")
 
         output.close()
     def cleanup(self):

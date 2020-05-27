@@ -1,0 +1,18 @@
+first part: list of all students with all their homework grades and collaborators 
+133
+HW1(54): 144, 168
+HW2(34.0): 168
+
+168
+HW1(49): 133
+HW2(29.0): 133
+
+144
+HW1(57): 133, 168
+HW2(99.0): 
+
+-----------------------
+part 2: students who collaborate with the same person/people for all homework: 
+168
+-----------------------
+part 3: students who always work alone: 
