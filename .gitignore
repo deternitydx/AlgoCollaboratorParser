@@ -4,3 +4,4 @@ env/
 *.pyc
 *.pyo
 *.log
+grades_all.csv

@@ -159,16 +159,15 @@ class CollaboratorsParser:
         if student_identifiers in self.student_mappings:
             return #student already mapped
 
-        # Create new student
         list_participants_all = get_participants_all_list()
-        list_participants_all=['njb2b','jh2jf','tbh3f']
-        student = StudentInfoNode(student_identifiers)
-        # Add the actual and randomized id mapping
 
         # Map main identifier to StudentInfoNode
         print("Looking for participant", student.computing_id)
         if student.computing_id in list_participants_all:
             print("--Found", student.computing_id)
+            # Create new student
+            student = StudentInfoNode(student_identifiers)
+            # Add the actual and randomized id mapping
             student.set_randomized_id()
             actual, randomized = student.match_actual_random_id()
             self.actual_to_randomized_id.update({actual:randomized})
@@ -299,7 +298,7 @@ class CollaboratorsParser:
         if hw not in df.columns:
             # raise ValueError("homework not found, possibly because no grades.csv file is contained in folder")
             return 0
-        return df.at[int(randomized_id), hw]
+        return df.at[str(randomized_id), hw]
 
     #look up collaborators for a specified homework from a specified student
     def collaborator_lookup(self, randomized_id, hw):
