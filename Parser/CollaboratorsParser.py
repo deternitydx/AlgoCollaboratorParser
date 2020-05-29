@@ -181,6 +181,23 @@ class CollaboratorsParser:
                 self.student_mappings[student.computing_id] = student
         else:
             print("--Not Found", student.computing_id)
+            #Jimmy code: edited version of the above that always sets the randomized id of non-participants to be 999. This means that
+            #   non-participants will have studentInfoNodes made of them, but the program will recognize that they are non-participants
+            #   and so won't output their collaborators. They will show up as the collaborators of paticipants, but only as the generic
+            #   randomized id, 999. All non-participants share this id, so there's no way to tell from the output who these collaborators
+            #   were, other than the fact that there existed a non-participant as the collaborator of a participant.
+           
+            student.set_randomized_id_for_nonparticipants()
+            actual, randomized = student.match_actual_random_id()
+            self.actual_to_randomized_id.update({actual:randomized})
+            self.student_mappings[student_identifiers] = student
+            print("-- -- --", actual, randomized)
+
+            # Map other identifier
+            # Checking for invalid edge cases just in case
+            if student.is_valid:
+                self.student_mappings[student.firstname + " " + student.lastname] = student
+                self.student_mappings[student.computing_id] = student
 
 
 
@@ -311,6 +328,10 @@ class CollaboratorsParser:
             if student in visited:
                 continue
             
+            #checks if its a non-participant: if so, do not output its collaborators.
+            if student.randomized_id == "999":
+                continue
+
             visited.add(student)
 
             output.write(student.randomized_id)

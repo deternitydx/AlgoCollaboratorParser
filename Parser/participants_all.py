@@ -1,6 +1,6 @@
 import csv
 
-def get_participants_all_list(mycsvfile = "/p/collabnets/participants_lists/participants_all.csv"):
+def get_participants_all_list(mycsvfile = "/p/collabnets/participants_lists/participants_test.csv"):
     mylist = []
     with open(mycsvfile) as csvfile:
         spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')

@@ -70,5 +70,8 @@ class StudentInfoNode:
             # randomly choose id if the available id list runs dry (shouldn't happen for our list)
             self.randomized_id = ''.join(random.choices(string.digits+string.ascii_letters,k = 5))
 
+    def set_randomized_id_for_nonparticipants(self):
+        self.randomized_id = "999"
+
         
 
