@@ -160,13 +160,14 @@ class CollaboratorsParser:
             return #student already mapped
 
         list_participants_all = get_participants_all_list()
+        # Create new student
+        student = StudentInfoNode(student_identifiers)
+
 
         # Map main identifier to StudentInfoNode
         print("Looking for participant", student.computing_id)
         if student.computing_id in list_participants_all:
             print("--Found", student.computing_id)
-            # Create new student
-            student = StudentInfoNode(student_identifiers)
             # Add the actual and randomized id mapping
             student.set_randomized_id()
             actual, randomized = student.match_actual_random_id()
@@ -275,11 +276,22 @@ class CollaboratorsParser:
         # merge all panda frames into one by the computing id
         df_f = reduce(lambda x, y: pd.merge(x, y, how='outer', on = 'Display ID'), list_df)
 
+
         # replace real ids with randomized ids
-        for actual in self.actual_to_randomized_id:
-            df_f.replace(actual, self.actual_to_randomized_id[actual], inplace=True)
+        # for actual in self.actual_to_randomized_id:
+        #     df_f.replace(actual, self.actual_to_randomized_id[actual], inplace=True)
+
+        # loop through all rows in the data sheet
+        # replace actual id with the randomized one if randomized id exists
+        # else delete the student data from data frame
+        for index, row in df_f.iterrows():
+            if row['Display ID'] in self.actual_to_randomized_id:
+                df_f.replace(row['Display ID'], self.actual_to_randomized_id[row['Display ID']], inplace=True)
+            else:
+                df_f.drop(index=index, inplace=True)
 
         df_f = df_f.set_index('Display ID')
+
         #enter default grade of 99 for homework students didn't turn in
         df_f.fillna('99', inplace=True)
         #sort all homework columns by homework number
@@ -298,7 +310,10 @@ class CollaboratorsParser:
         if hw not in df.columns:
             # raise ValueError("homework not found, possibly because no grades.csv file is contained in folder")
             return 0
-        return df.at[str(randomized_id), hw]
+        try:
+            return df.at[str(randomized_id), hw]
+        except:
+            return df.at[int(randomized_id), hw]
 
     #look up collaborators for a specified homework from a specified student
     def collaborator_lookup(self, randomized_id, hw):
@@ -390,7 +405,7 @@ class CollaboratorsParser:
                 output.write("\n")
             #check if all the collaborator list is the same for all homework
             if all(elem == collaborators_for_each_student[0] for elem in collaborators_for_each_student):
-                if collaborators_for_each_student[0] == "":
+                if collaborators_for_each_student[0] == []:
                     students_working_alone.append(name)
                 students_unchanged_collaborators.append(name)
             output.write("\n")
