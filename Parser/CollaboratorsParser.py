@@ -407,6 +407,7 @@ class CollaboratorsParser:
             if all(elem == collaborators_for_each_student[0] for elem in collaborators_for_each_student):
                 if collaborators_for_each_student[0] == []:
                     students_working_alone.append(name)
+                else：
                 students_unchanged_collaborators.append(name)
             output.write("\n")
         output.write("-----------------------\n")
