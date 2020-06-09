@@ -388,28 +388,29 @@ class CollaboratorsParser:
 
         #loop over all students in the grades_all.csv file
         for name in df['Display ID']:
-            collaborators_for_each_student=[]
-            output.write(str(name))
-            output.write("\n")
-
-            #loop through all the homework for each student
-            for hw in cols[1:]:
-                grade = self.grade_lookup(name,hw)
-                collaborators_list = self.collaborator_lookup(name,hw)
-                collaborators_for_each_student.append(collaborators_list)
-                output.write(hw+"("+str(grade)+")"+": ")
-
-                # if list not empty
-                if collaborators_list:
-                    output.write(", ".join(collaborators_list))
+            if name != 999:
+                collaborators_for_each_student=[]
+                output.write(str(name))
                 output.write("\n")
-            #check if all the collaborator list is the same for all homework
-            if all(elem == collaborators_for_each_student[0] for elem in collaborators_for_each_student):
-                if collaborators_for_each_student[0] == []:
-                    students_working_alone.append(name)
-                else：
-                students_unchanged_collaborators.append(name)
-            output.write("\n")
+
+                #loop through all the homework for each student
+                for hw in cols[1:]:
+                    grade = self.grade_lookup(name,hw)
+                    collaborators_list = self.collaborator_lookup(name,hw)
+                    collaborators_for_each_student.append(collaborators_list)
+                    output.write(hw+"("+str(grade)+")"+": ")
+
+                    # if list not empty
+                    if collaborators_list:
+                        output.write(", ".join(collaborators_list))
+                    output.write("\n")
+                #check if all the collaborator list is the same for all homework
+                if all(elem == collaborators_for_each_student[0] for elem in collaborators_for_each_student):
+                    if collaborators_for_each_student[0] == []:
+                        students_working_alone.append(name)
+                    else：
+                    students_unchanged_collaborators.append(name)
+                output.write("\n")
         output.write("-----------------------\n")
 
         output.write("part 2: students who collaborate with the same person/people for all homework: \n")
