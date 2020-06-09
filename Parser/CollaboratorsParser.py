@@ -388,7 +388,7 @@ class CollaboratorsParser:
 
         #loop over all students in the grades_all.csv file
         for name in df['Display ID']:
-            if name != 999:
+            if str(name) != str(999):
                 collaborators_for_each_student=[]
                 output.write(str(name))
                 output.write("\n")
